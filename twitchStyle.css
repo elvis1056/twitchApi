@@ -1,0 +1,244 @@
+html, body {
+  height: 100%;
+  background-color: rgb(24, 24, 27);
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(32, 32, 35);
+  border-bottom-color: rgb(239, 239, 241);
+  height: 3.6rem;
+}
+
+.login {
+  padding: 0.5rem;
+  white-space: nowrap;
+  background-color: rgba(255, 255, 255);
+  border-radius: 4px;
+}
+
+.login:hover {
+  background-color:rgba(255, 255, 255, 0.9);
+}
+
+.signup {
+  padding: 0.5rem;
+  white-space: nowrap;
+  background-color: rgb(145, 71, 255);
+  border-radius: 4px;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 2rem;
+}
+
+.browse {
+  margin: 0 30px;
+  color: #fff;
+}
+
+.browse:hover {
+  color: #a970ff;
+}
+
+.sideBar {
+  height: 100%;
+  width: 20rem;
+  background-color: rgb(31, 31, 35);
+}
+
+.sideBar__info {
+  width: 12rem;
+  margin: 10px;
+  padding: 10px;
+}
+
+.sideBar__row {
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+}
+
+.sideBar__row__headTitle {
+  margin-right: 10px;
+}
+
+.sideBar__row__card {
+  margin: 10px;
+}
+
+.sideBar__row__card > a {
+  text-decoration: none;
+}
+
+.sideBar__row__card__headShot {
+  /* border: 1px solid; */
+  /* border-radius: 50%; */
+  width: 3rem;
+  /* background-color: rgb(194, 90, 90); */
+}
+
+.sideBar__row__card__headShot > img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.sideBar__row__card > a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.sideBar__row__card__text {
+  width: 100%;
+  padding: 0.5rem
+}
+
+.online {
+  width: 0.8rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  height: 100%;
+  margin-top: 0.1rem;
+}
+
+
+
+.container {
+  width: 100%;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  width: 100%;
+  border: 1px solid blue;
+}
+
+.showMore {
+  white-space: nowrap;
+}
+
+.liveSection {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.liveStream {
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+.liveStream > img {
+  width: 100%;
+}
+
+.liveStream__card {
+  display: flex;
+  padding-top: 0.5rem;
+}
+
+.liveStream__headShot {
+  width: 20%;
+}
+
+.liveStream__headShot > img {
+  width: 75%;
+  border-radius: 50%;
+}
+
+.liveSection__text {
+  width: 100%;
+  margin: 10px;
+  padding: 0 20px;
+  font-weight: 500;
+}
+
+.marginRight5 {
+  margin-right: 5px;
+}
+
+.marginRight10 {
+  margin-right: 10px;
+}
+
+.marginRight20 {
+  margin-right: 20px;
+}
+
+.marginLeft10 {
+  margin-left: 10px;
+}
+
+.marginLeft20 {
+  margin-left: 20px;
+}
+
+@media (max-width: 575px) {
+  .sideBar__info, .sideBar__row, .sideBar__row__card__text, .online, .sideBar__row__card__num {
+    display: none;
+  }
+
+  .browse {
+    display: none;
+  }
+
+  .sideBar__row__card__headShot {
+    width: 30px;
+    height: 30px;
+    border: none;
+  }
+
+  .sideBar {
+    width: 5rem;
+  }
+
+  .liveSection {
+    display: block;
+  }
+
+  .liveStream {
+    width: 90%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) { 
+  .liveStream {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+  .liveStream {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1200px) { 
+  .liveStream {
+    width: 25%;
+  }
+}

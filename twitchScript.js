@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     xhr.onreadystatechange = function () {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
         let data = JSON.parse(xhr.responseText);
+        console.log(data)
         creatLiveStreamDom(data.featured)
       } 
     }
@@ -31,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     xhr.onreadystatechange = function () {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
         let data = JSON.parse(xhr.responseText);
-        console.log(data)
         creatRecommendedChannelDom(data.streams)
       } 
     }
@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src=${item.stream.channel.logo} />
           </div>
           <div class="liveStream__text">
-            <div>title</div>
-            <div>Name</div>
-            <div>Game</div>
+            <div>${item.text}</div>
+            <div>${item.stream.channel.display_name}</div>
+            <div>${item.stream.channel.game}</div>
           </div>
         </div>
       `

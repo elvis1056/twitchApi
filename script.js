@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-	let clientId = "xz6dj2rzycbnttjx1jeflood62ru70"
+
+	let clientId = "75ni0m3qjhdw4wh1ucjyh16ltx0mpf"
 	let limit = 18;
-	let apiUrl = `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=${limit}`;
+	let apiUrl = `https://api.twitch.tv/kraken/streams/?client_id=${clientId}&game=League%20of%20Legends&limit=${limit}`;
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", apiUrl, true);
+	xhr.open("GET", apiUrl);
 	xhr.setRequestHeader("client-id", clientId);
+	xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
 	xhr.send();
 
 	xhr.onreadystatechange = function () {

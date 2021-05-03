@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getLiveStreams() {
     const xhr = new XMLHttpRequest();
-    const apiUrl = `https://api.twitch.tv/kraken/streams/featured`
+    const apiUrl = `https://api.twitch.tv/kraken/streams/?language=zh`
     xhr.open("GET", apiUrl);
     xhr.setRequestHeader("client-id", clientId);
     xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
         let data = JSON.parse(xhr.responseText);
         console.log(data)
-        creatLiveStreamDom(data.featured)
+        creatLiveStreamDom(data.streams)
       } 
     }
   }
@@ -45,15 +45,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const element = document.createElement('div');
       element.className = 'liveStream';
       element.innerHTML = `
-        <img src=${item.stream.preview.large} />
+        <img src=${item.preview.large} />
         <div class="liveStream__card">
           <div class="liveStream__headShot">
-            <img src=${item.stream.channel.logo} />
+            <img src=${item.channel.logo} />
           </div>
-          <div class="liveStream__text">
-            <div>${item.text}</div>
-            <div>${item.stream.channel.display_name}</div>
-            <div>${item.stream.channel.game}</div>
+          <div class="liveStream__textSection">
+            <a href=${item.channel.url}>
+              <div class="liveStream__text__status">${item.channel.status}</div>
+            </a>
+            <a href="${item.channel.url}/videos/all">
+              <div class="liveStream__text__name">${item.channel.display_name}</div>
+            </a>
+            <a href="https://www.twitch.tv/directory/game/${item.channel.game}">
+              <div class="liveStream__text__game">${item.channel.game}</div>
+            </a>
           </div>
         </div>
       `

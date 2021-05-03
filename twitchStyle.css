@@ -39,12 +39,17 @@ html, body {
   width: 2rem;
 }
 
+.dot {
+  color: #fff;
+  width: 1.5rem;
+}
+
 .browse {
   margin: 0 30px;
   color: #fff;
 }
 
-.browse:hover {
+.browse:hover, .dot:hover               {
   color: #a970ff;
 }
 
@@ -159,6 +164,32 @@ html, body {
 .liveStream__card {
   display: flex;
   padding-top: 0.5rem;
+}
+
+.liveStream__textSection {
+  width: 100%;
+}
+
+.liveStream__textSection > a {
+  text-decoration: none;
+}
+
+.liveStream__text__status {
+  color: #fff;
+  padding: 0.2rem 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.liveStream__text__name, .liveStream__text__game {
+  color: rgb(173, 173, 184);
+  padding: 0.2rem 0;
+  font-size: 0.8rem;
+}
+
+.liveStream__text__status:hover, .liveStream__text__name:hover, .liveStream__text__game:hover {
+  color: rgb(145, 71, 255);
 }
 
 .liveStream__headShot {

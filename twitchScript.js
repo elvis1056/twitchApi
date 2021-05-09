@@ -1,7 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  const { Twitch } = window;
+
+  const options = {
+    width: '100%',
+    height: '100%',
+    channel: 'channel name',
+    parent: ['127.0.0.1', 'localhost'],
+  };
+
   const liveSection = document.querySelector('.liveSection');
   const cardsSection = document.querySelector('.sideBar__cards');
+  const carouselCards = document.querySelectorAll('.carousel__card');
+  const leftArrow = document.querySelector('.left__arrow');
+  const rightArrow = document.querySelector('.right__arrow');
 
   const clientId = "75ni0m3qjhdw4wh1ucjyh16ltx0mpf";
 
@@ -15,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     xhr.onreadystatechange = function () {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
         let data = JSON.parse(xhr.responseText);
-        console.log(data)
         creatLiveStreamDom(data.streams)
       } 
     }
@@ -26,8 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     xhr.open('GET', `https://api.twitch.tv/kraken/streams?language=zh&limit=10`);
     xhr.setRequestHeader('client-id', clientId);
     xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
-    // xhr.onload = getLiveChannels;
-    // xhr.onerror = errorHandler;
     xhr.send();
     xhr.onreadystatechange = function () {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
@@ -37,8 +46,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function requestClips() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://api.twitch.tv/kraken/streams/featured?limit=5`);
+    xhr.setRequestHeader('client-id', clientId);
+    xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+      if ( xhr.readyState === 4 && xhr.status === 200 ) {
+        let data = JSON.parse(xhr.responseText);
+        console.log(data.featured)
+        creatCarouselCard(data.featured)
+      } 
+    }
+  }
+
   getLiveStreams()
   getRecommendedChannel()
+  requestClips()
 
   function creatLiveStreamDom(data) {
     data.forEach((item, i) => {
@@ -90,4 +115,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function creatCarouselCard(data) {
+    data.forEach((item, i) => {
+      const element = document.createElement('div');
+      element.className = 'view';
+      element.setAttribute("id", item.stream.channel.name)
+      carouselCards[i].appendChild(element)
+    })
+  }
+
+  function carouselPlay(channelName) {
+    options.channel = channelName;
+    const player = new Twitch.Player(channelName, options);
+    return player;
+  }
+
+  leftArrow.addEventListener('click', () => {
+    carouselCards.forEach((el) => {
+      const position = el.classList[1];
+      el.classList.remove(...el.classList);
+      switch (position) {
+        case 'left__last__card':
+          el.classList.add('carousel__card', `right__last__card`);
+          break;
+        case 'left__first__card':
+          el.classList.add('carousel__card', `left__last__card`);
+          break;
+        case 'center':
+          el.classList.add('carousel__card', `left__first__card`);
+          break;
+        case 'right__first__card':
+          el.classList.add('carousel__card', 'center');
+          break;
+        case 'right__last__card':
+          el.classList.add('carousel__card', `right__first__card`);
+          break;
+        // default:
+        //   break;
+      }
+    });
+
+    leftArrow.addEventListener('click', () => {
+      carouselCards.forEach((el) => {
+      const position = el.classList[1];
+      console.log(position)
+      el.classList.remove(...el.classList);
+      switch (position) {
+        case 'left__last__card':
+          el.classList.add('carousel__card', `right__last__card`);
+          break;
+        case 'left__first__card':
+          el.classList.add('carousel__card', `left__last__card`);
+          break;
+        case 'center':
+          el.classList.add('carousel__card', `left__first__card`);
+          break;
+        case 'right__first__card':
+          el.classList.add('carousel__card', 'center');
+          break;
+        case 'right__last__card':
+          el.classList.add('carousel__card', `right__first__card`);
+          break;
+        // default:
+        //   break;
+      }
+    });
+  });
 })

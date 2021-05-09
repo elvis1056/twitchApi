@@ -40,9 +40,13 @@
 	<div class="wrapper">
 		<div class="sideBar">
 			<div class="sideBar__info">
-				<div>Join the Twitch community!</div>
-				<div>Discover the best live streams anywhere.</div>
-				<button>Sign In</button>
+				<div style="font-size: 24px">Join the Twitch community!</div>
+				<p>Discover the best live streams anywhere.</p>
+				<Button>
+					<div class="signup">
+						Sign Up
+					</div>
+				</Button>
 			</div>
 			<div>
 				<div class="sideBar__row">
@@ -68,6 +72,19 @@
 		</div>
 		<div class="container">
 			<!-- <div>旋轉</div> -->
+			<div class="carouselSection">
+				<div class="left__arrow">
+					<img src="./left_arrow.svg" />
+				</div>
+				<div class="right__arrow">
+					<img src="./right_arrow.svg" />
+				</div>
+				<div class="carousel__card left__last__card"></div>
+				<div class="carousel__card left__first__card"></div>
+				<div class="carousel__card center"></div>
+				<div class="carousel__card right__first__card"></div>
+				<div class="carousel__card right__last__card"></div>
+			</div>
 			<div>
 				<div class="liveSection__text">Live channels we think you’ll like</div>
 				<div class="liveSection">
@@ -100,5 +117,6 @@
 	</div> -->
 </body>
 <!-- <script src="script.js"></script> -->
+<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
 <script src="twitchScript.js"></script>
 </html>

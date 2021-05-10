@@ -154,30 +154,29 @@ document.addEventListener("DOMContentLoaded", () => {
         //   break;
       }
     });
-
-    leftArrow.addEventListener('click', () => {
-      carouselCards.forEach((el) => {
-      const position = el.classList[1];
-      console.log(position)
-      el.classList.remove(...el.classList);
-      switch (position) {
-        case 'left__last__card':
-          el.classList.add('carousel__card', `right__last__card`);
-          break;
-        case 'left__first__card':
-          el.classList.add('carousel__card', `left__last__card`);
-          break;
-        case 'center':
-          el.classList.add('carousel__card', `left__first__card`);
-          break;
-        case 'right__first__card':
-          el.classList.add('carousel__card', 'center');
-          break;
-        case 'right__last__card':
-          el.classList.add('carousel__card', `right__first__card`);
-          break;
-        // default:
-        //   break;
+  })
+  rightArrow.addEventListener('click', () => {
+    carouselCards.forEach((el) => {
+    const position = el.classList[1];
+    el.classList.remove(...el.classList);
+    switch (position) {
+      case 'left__last__card':
+        el.classList.add('carousel__card', `right__last__card`);
+        break;
+      case 'left__first__card':
+        el.classList.add('carousel__card', `left__last__card`);
+        break;
+      case 'center':
+        el.classList.add('carousel__card', `left__first__card`);
+        break;
+      case 'right__first__card':
+        el.classList.add('carousel__card', 'center');
+        break;
+      case 'right__last__card':
+        el.classList.add('carousel__card', `right__first__card`);
+        break;
+      // default:
+      //   break;
       }
     });
   });

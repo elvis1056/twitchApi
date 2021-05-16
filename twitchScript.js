@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     width: '100%',
     height: '100%',
     channel: 'channel name',
-    parent: ['127.0.0.1', 'localhost'],
+    parent: ['127.0.0.1', 'localhost', 'elvis1056.github.io'],
   };
 
   const liveSection = document.querySelector('.liveSection');

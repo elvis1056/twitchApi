@@ -34,7 +34,6 @@ html, body {
 }
 
 .signup {
-  margin-top: 10px;
   padding: 0.5rem;
   white-space: nowrap;
   background-color: rgb(145, 71, 255);
@@ -482,7 +481,7 @@ html, body {
   .carousel__card {
     width: 600px;
   }
-  .left__first__card, .left__last__card, .right__first__card, .right__last__card, .sideBar__row__card__num {
+  .left__first__card, .left__last__card, .right__first__card, .right__last__card, .sideBar__row__card__num, .dot {
     display: none;
   }
 }

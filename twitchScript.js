@@ -55,22 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
     xhr.onreadystatechange = function () {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
         let data = JSON.parse(xhr.responseText);
-        console.log(data.featured)
         creatCarouselCard(data.featured)
       } 
     }
   }
-
-  getLiveStreams()
-  getRecommendedChannel()
-  requestClips()
 
   function creatLiveStreamDom(data) {
     data.forEach((item, i) => {
       const element = document.createElement('div');
       element.className = 'liveStream';
       element.innerHTML = `
-        <img src=${item.preview.large} />
+        <a href=${item.channel.url}>
+          <img src=${item.preview.large} />
+        </a>
         <div class="liveStream__card">
           <div class="liveStream__headShot">
             <img src=${item.channel.logo} />
@@ -115,19 +112,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function creatCarouselCard(data) {
-    data.forEach((item, i) => {
-      const element = document.createElement('div');
-      element.className = 'view';
-      element.setAttribute("id", item.stream.channel.name)
-      carouselCards[i].appendChild(element)
-    })
+  
+  function getCarouselTwitchPlayer() {
+    const centerID = document.querySelector('.center .video').getAttribute('id');
+    document.querySelector('.center .view > img').classList.add('none');
+    document.querySelector('.center .video').setAttribute("style", "height: 360px");
+    options.channel = centerID;
+    const player = new Twitch.Player(centerID, options);
+    // console.log(player)
+    player.play();
+    player.setVolume(0.5);
+    return player;
   }
 
-  function carouselPlay(channelName) {
-    options.channel = channelName;
-    const player = new Twitch.Player(channelName, options);
-    return player;
+  function stopCarousel(left, right) {
+    console.log(left, right)
+    if (left) {
+      const leftChannelId = document.querySelector('.left__first__card .video');
+      document.querySelector('.left__first__card .view > img').classList.remove('none');
+      document.querySelector('.left__first__card .video').setAttribute("style", "height: 100%");
+      leftChannelId.innerHTML = '';
+    }
+  
+    if (right) {
+      const rightChannelId = document.querySelector('.right__first__card .video');
+      document.querySelector('.right__first__card .view > img').classList.remove('none');
+      document.querySelector('.right__first__card .video').setAttribute("style", "height: 100%");
+      rightChannelId.innerHTML = '';
+    }
+  }
+
+  function creatCarouselCard(data) {
+    data.forEach((item, i) => {
+      options.channel = item.stream.channel._id;
+      carouselCards[i].innerHTML = `
+        <div class="view">
+          <div class="video" id="${item.stream.channel.name}"></div>
+          <img src=${item.stream.preview.large} />
+          <div class="info">
+            <div class="info__block">
+              <div class="info__avatar">
+                <img src="${item.stream.channel.logo}" />
+              </div>
+              <div class="info__text">
+                <a href="${item.stream.channel.url}">${item.stream.channel.name}</a>
+                <a href="#" >${item.stream.game}</a>
+                <div>${item.stream.viewers} viewers</div>
+              </div>
+            </div>
+            <div class="info__tag">${item.stream.channel.broadcaster_language}</div>
+            <div class="info__des">${item.stream.channel.description}</div>
+          </div>
+        </div>
+      `
+    })
+    getCarouselTwitchPlayer()
   }
 
   leftArrow.addEventListener('click', () => {
@@ -143,9 +182,11 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         case 'center':
           el.classList.add('carousel__card', `left__first__card`);
+          stopCarousel(false, true)
           break;
         case 'right__first__card':
           el.classList.add('carousel__card', 'center');
+          getCarouselTwitchPlayer()
           break;
         case 'right__last__card':
           el.classList.add('carousel__card', `right__first__card`);
@@ -155,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   })
+
   rightArrow.addEventListener('click', () => {
     carouselCards.forEach((el) => {
     const position = el.classList[1];
@@ -168,9 +210,11 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case 'center':
         el.classList.add('carousel__card', `left__first__card`);
+        stopCarousel(true, false)
         break;
       case 'right__first__card':
         el.classList.add('carousel__card', 'center');
+        getCarouselTwitchPlayer()
         break;
       case 'right__last__card':
         el.classList.add('carousel__card', `right__first__card`);
@@ -180,4 +224,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  getLiveStreams()
+  getRecommendedChannel()
+  requestClips()
+
 })

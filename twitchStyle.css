@@ -14,30 +14,17 @@ html, body {
   --color-background-tag-default: var(--color-opac-w-3);
 }
 
+/* -------------------- */
+/* header */
+/* -------------------- */
+
+
 .header {
   display: flex;
   justify-content: space-between;
   background-color: rgb(32, 32, 35);
   border-bottom-color: rgb(239, 239, 241);
   height: 3.6rem;
-}
-
-.login {
-  padding: 0.5rem;
-  white-space: nowrap;
-  background-color: rgba(255, 255, 255);
-  border-radius: 4px;
-}
-
-.login:hover {
-  background-color:rgba(255, 255, 255, 0.9);
-}
-
-.signup {
-  padding: 0.5rem;
-  white-space: nowrap;
-  background-color: rgb(145, 71, 255);
-  border-radius: 4px;
 }
 
 .leftSection {
@@ -63,16 +50,59 @@ html, body {
   color: #a970ff;
 }
 
-.sideBar {
+.header__text {
+  display: none;
+  font-size: 1rem;
+  padding: 15px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.login {
+  padding: 0.5rem;
+  white-space: nowrap;
+  background-color: rgba(255, 255, 255);
+  border-radius: 4px;
+}
+
+.login:hover {
+  background-color:rgba(255, 255, 255, 0.9);
+}
+
+.signup {
+  padding: 0.5rem;
+  white-space: nowrap;
+  background-color: rgb(145, 71, 255);
+  border-radius: 4px;
+}
+
+/* -------------------- */
+/* wrapper ( sidebar / container ) */
+/* -------------------- */
+
+.wrapper {
+  display: flex;
   height: 100%;
-  background-color: rgb(31, 31, 35);
+  /* width: 100%; */
+  margin-top: 0.1rem;
+}
+
+/* -------------------- */
+/* wrapper ( sidebar ) */
+/* -------------------- */
+
+.sideBar {
+  background-color: black;
   z-index: 9;
   transition: all 0.3s ease;
 }
 
 .sideBar__info {
-  width: 12rem;
-  margin: 10px;
+  width: 100%;
   padding: 20px;
 }
 
@@ -95,10 +125,7 @@ html, body {
 }
 
 .sideBar__row__card__headShot {
-  /* border: 1px solid; */
-  /* border-radius: 50%; */
   width: 3rem;
-  /* background-color: rgb(194, 90, 90); */
 }
 
 .sideBar__row__card__headShot > img {
@@ -124,19 +151,9 @@ html, body {
   background-color: red;
 }
 
-.rightSection {
-  display: flex;
-  align-items: center;
-}
-
-.wrapper {
-  display: flex;
-  height: 100%;
-  /* width: 100%; */
-  margin-top: 0.1rem;
-}
-
-
+/* -------------------- */
+/* wrapper ( container ) */
+/* -------------------- */
 
 .container {
   width: 0;
@@ -155,14 +172,17 @@ html, body {
 
 .showMore {
   white-space: nowrap;
+  color: white;
 }
+
+/* -------------------- */
+/* wrapper / container / ( carousel ) */
+/* -------------------- */
 
 .carouselSection {
   position: relative;
   display: flex;
-  /* width: 100%; */
   height: 500px;
-  margin: 30px auto 0;
 }
 
 .left__arrow {
@@ -244,8 +264,6 @@ html, body {
 .info__des {
   padding: 0 0.8rem;
   line-height: 1.5rem;
-  /* text-overflow: ellipsis;
-  overflow: hidden; */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -268,7 +286,6 @@ html, body {
   left: 0;
   right: 0;
   transition: all 0.3s ease;
-  /* background-color: brown; */
 }
 
 .left__first__card {
@@ -281,7 +298,6 @@ html, body {
   z-index: 4;
   transition: all 0.3s ease;
   width: 640px;
-  /* background-color: yellow; */
 }
 
 .left__last__card {
@@ -294,7 +310,6 @@ html, body {
   z-index: 3;
   transition: all 0.3s ease;
   width: 480px;
-  /* background-color: blue; */
 }
 
 .right__first__card {
@@ -307,7 +322,6 @@ html, body {
   z-index: 4;
   transition: all 0.3s ease;
   width: 640px;
-  /* background-color: yellow; */
 }
 
 .right__last__card {
@@ -320,11 +334,13 @@ html, body {
   z-index: 3;
   transition: all 0.3s ease;
   width: 480px;
-  /* background-color: blue; */
 }
 
+/* -------------------- */
+/* wrapper / container / ( liveSection ) */
+/* -------------------- */
+
 .liveSection {
-  /* width: 100%; */
   margin: 10px;
   padding: 10px;
   display: flex;
@@ -381,11 +397,14 @@ html, body {
 }
 
 .liveSection__text {
-  /* width: 100%; */
   margin: 10px;
   padding: 0 20px;
   font-weight: 500;
 }
+
+/* -------------------- */
+/* Global */
+/* -------------------- */
 
 .none {
   display: none;
@@ -411,60 +430,62 @@ html, body {
   margin-left: 20px;
 }
 
+/* -------------------- */
+/* RWD - Responsive Web Design */
+/* -------------------- */
+
 @media (max-width: 575px) {
-  .sideBar__info, .sideBar__row, .sideBar__row__card__text, .online, .sideBar__row__card__num {
+  .info, .browse, .sideBar__row, .sideBar__row__card__text, .online, .sideBar__row__card__num {
+    display: none;
+  }
+  .sideBar__info, .left__last__card, .left__first__card, .right__last__card, .right__first__card, .sideBar__row__card__num, .dot {
     display: none;
   }
 
-  .browse {
-    display: none;
-  }
-
-  .sideBar__row__card__headShot {
-    width: 30px;
-    height: 30px;
-    border: none;
+  .header__text {
+    display: block;
   }
 
   .sideBar {
     width: 5rem;
   }
+  .sideBar__row__card__headShot {
+    width: 30px;
+    height: 30px;
+    border: none;
+  }
+  .sideBar__row__card {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
 
   .liveSection {
     display: block;
   }
-
   .liveStream {
     width: 90%;
-  }
-  .info {
-    display: none;
   }
   .video {
     width: 100%;
     height: 350px;
+  }
+
+  .carouselSection {
+    margin: 0;
+    height: 400px;
   }
   .carousel__card {
     width: 300px;
     position: relative;
     top: 0;
   }
-  .carouselSection {
-    margin: 0;
-    height: 400px;
-  }
-  .left__last__card, .left__first__card, .right__last__card, .right__first__card, .sideBar__row__card__num, .dot {
-    display: none;
-  }
-
-  .sideBar__row__card {
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-  }
 }
 
 @media (min-width: 576px) and (max-width: 991px) { 
+  .sideBar__info, .left__first__card, .left__last__card, .right__first__card, .right__last__card, .sideBar__row__card__num, .dot {
+    display: none;
+  }
   .sideBar {
     width: 10rem;
   }
@@ -481,12 +502,12 @@ html, body {
   .carousel__card {
     width: 600px;
   }
-  .left__first__card, .left__last__card, .right__first__card, .right__last__card, .sideBar__row__card__num, .dot {
-    display: none;
-  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) { 
+  .sideBar__info, .left__first__card, .left__last__card, .right__first__card, .right__last__card {
+    display: none;
+  }
   .sideBar {
     width: 15rem;
   }
@@ -496,14 +517,11 @@ html, body {
   .carousel__card {
     width: 600px;
   }
-  .left__first__card, .left__last__card, .right__first__card, .right__last__card {
-    display: none;
-  }
 }
 
 @media (min-width: 1200px) { 
   .sideBar {
-    width: 20rem;
+    width: 15rem;
   }
   .liveStream {
     width: 25%;

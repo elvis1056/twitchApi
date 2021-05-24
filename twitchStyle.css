@@ -6,6 +6,7 @@ html, body {
 :root {
   --twitch-ice: #f0f0ff;
   --twitch-light-gray: #54545a;
+  --twitch-purple: #9146ff;
   --border-radius-rounded: 9000px;
   --font-weight-semibold: 600;
   --color-opac-w-3: hsla(0, 0%, 100%, 0.15);
@@ -345,6 +346,7 @@ html, body {
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
+  /* background: var(--twitch-purple); */
 }
 
 .liveStream {
@@ -352,8 +354,17 @@ html, body {
   padding: 0.5rem;
 }
 
-.liveStream > a > img {
+.liveStream__img__wrapper {
+  line-height: 0;
+  background: var(--twitch-purple);
+}
+
+.liveStream__img__wrapper > a > img {
   width: 100%;
+  transition: all 0.3s;
+}
+.liveStream__img__wrapper > a > img:hover {
+  transform: translate(8px, -10px);
 }
 
 .liveStream__card {

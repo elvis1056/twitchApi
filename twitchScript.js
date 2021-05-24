@@ -65,9 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const element = document.createElement('div');
       element.className = 'liveStream';
       element.innerHTML = `
-        <a href=${item.channel.url}>
-          <img src=${item.preview.large} />
-        </a>
+        <div class="liveStream__img__wrapper">
+          <a href=${item.channel.url}>
+            <img src=${item.preview.large} />
+          </a>
+        </div>
         <div class="liveStream__card">
           <div class="liveStream__headShot">
             <img src=${item.channel.logo} />

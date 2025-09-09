@@ -118,7 +118,7 @@ html, body {
 }
 
 .sideBar__row__card {
-  margin: 10px;
+  /* padding: 10px; */
 }
 
 .sideBar__row__card > a {
@@ -126,7 +126,11 @@ html, body {
 }
 
 .sideBar__row__card__headShot {
-  width: 3rem;
+  display: flex;
+  max-height: 100%;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
 }
 
 .sideBar__row__card__headShot > img {
@@ -142,7 +146,18 @@ html, body {
 
 .sideBar__row__card__text {
   width: 100%;
-  padding: 0.5rem
+  padding: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__text__name {
+  color: #fff;
+  padding: 0.2rem 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .online {
@@ -236,7 +251,6 @@ html, body {
 
 .info__text {
   white-space: nowrap;
-  font-weight: 600;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -253,7 +267,7 @@ html, body {
 
 .info__tag {
   padding: 0 0.8rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   display: inline-block;
   align-items: center;
   border-radius: var(--border-radius-rounded);
@@ -361,6 +375,7 @@ html, body {
 
 .liveStream__img__wrapper > a > img {
   width: 100%;
+  /* height: auto; */
   transition: all 0.3s;
 }
 .liveStream__img__wrapper > a > img:hover {

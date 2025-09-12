@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <img src="${item.thumbnail_url.replace("{width}", 440).replace("{height}", 248)}" />
               </div>
               <div class="info__text">
-                <a href="${item.game_id}">${item.user_name}</a>
+                <a href="https://www.twitch.tv/${item.user_name}">${item.user_name}</a>
                 <a href="https://www.twitch.tv/directory/category${toSlug(item.game_name)}" >${item.game_name}</a>
                 <div>${item.viewer_count} viewers</div>
               </div>

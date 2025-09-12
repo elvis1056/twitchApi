@@ -142,6 +142,7 @@ html, body {
   display: flex;
   align-items: center;
   color: #fff;
+  margin-right: 10px;
 }
 
 .sideBar__row__card__text {

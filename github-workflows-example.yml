@@ -1,0 +1,40 @@
+name: Refresh Twitch Access Token
+
+on:
+  schedule:
+    # 每30天執行一次 (cron: 分 時 日 月 週)
+    - cron: '0 0 */30 * *'
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  refresh-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get new Twitch access token
+        id: get-token
+        run: |
+          RESPONSE=$(curl -X POST 'https://id.twitch.tv/oauth2/token' \
+            -H 'Content-Type: application/x-www-form-urlencoded' \
+            -d "client_id=${{ secrets.TWITCH_CLIENT_ID }}&client_secret=${{ secrets.TWITCH_CLIENT_SECRET }}&grant_type=client_credentials")
+
+          ACCESS_TOKEN=$(echo $RESPONSE | jq -r '.access_token')
+          EXPIRES_IN=$(echo $RESPONSE | jq -r '.expires_in')
+
+          echo "access_token=$ACCESS_TOKEN" >> $GITHUB_OUTPUT
+          echo "Token 有效期：$EXPIRES_IN 秒 (約 $(($EXPIRES_IN / 86400)) 天)"
+
+      - name: Update GitHub Secret
+        uses: gliech/create-github-secret-action@v1
+        with:
+          name: TWITCH_ACCESS_TOKEN
+          value: ${{ steps.get-token.outputs.access_token }}
+          pa_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Trigger deployment
+        run: |
+          echo "Token 已更新，觸發重新部署..."
+          # 這裡可以觸發你的部署流程

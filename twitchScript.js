@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rightArrow = document.querySelector('.right__arrow');
 
   const TWITCH_CLIENT_ID = "75ni0m3qjhdw4wh1ucjyh16ltx0mpf";
-  const TWITCH_BEARER_TOKEN = "Bearer n6y8w31h8ciijco07nu4f9byi3e79n" // quick expiration of certificates
+  const TWITCH_BEARER_TOKEN = "Bearer os3esjj9dfi80x6jlq4nptmh0u176d" // quick expiration of certificates
 
   function getStreams() {
     const xhr = new XMLHttpRequest();

@@ -15,16 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const leftArrow = document.querySelector('.left__arrow');
   const rightArrow = document.querySelector('.right__arrow');
 
-  const TWITCH_CLIENT_ID = "75ni0m3qjhdw4wh1ucjyh16ltx0mpf";
-  const TWITCH_BEARER_TOKEN = "Bearer os3esjj9dfi80x6jlq4nptmh0u176d" // quick expiration of certificates
+  // Worker API URL - no need to expose sensitive credentials anymore!
+  const WORKER_API_URL = "https://twitch-api-proxy.john800116.workers.dev/api/streams";
 
   function getStreams() {
     const xhr = new XMLHttpRequest();
-    const apiUrl = `https://api.twitch.tv/helix/streams/?language=zh&type=live`
+    const apiUrl = `${WORKER_API_URL}?language=zh&type=live`
     xhr.open("GET", apiUrl);
-    xhr.setRequestHeader("client-id", TWITCH_CLIENT_ID);
-    xhr.setRequestHeader("Authorization", TWITCH_BEARER_TOKEN)
-    xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+    // No headers needed - Worker handles authentication
     xhr.send();
     xhr.onreadystatechange = function () {
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
@@ -32,7 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
         creatLiveStreamDom(data.data)
         creatRecommendedChannelDom(data.data)
         creatCarouselCard(data.data.splice(0,5))
-      } 
+      } else if ( xhr.readyState === 4 ) {
+        console.error('Failed to fetch streams:', xhr.status, xhr.responseText);
+      }
     }
   }
 

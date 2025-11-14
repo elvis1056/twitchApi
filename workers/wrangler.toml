@@ -1,0 +1,13 @@
+name = "twitch-api-proxy"
+main = "index.js"
+compatibility_date = "2024-11-14"
+
+# KV Namespace binding for storing Twitch access token
+[[kv_namespaces]]
+binding = "TWITCH_TOKEN_CACHE"
+id = "4a8a92f51a2d4e12b25f5191ec630523"
+
+# Environment variables for sensitive data
+# You need to set these secrets before deployment:
+# wrangler secret put TWITCH_CLIENT_ID
+# wrangler secret put TWITCH_CLIENT_SECRET
